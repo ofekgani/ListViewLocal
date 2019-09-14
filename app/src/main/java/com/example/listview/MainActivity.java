@@ -1,8 +1,8 @@
 package com.example.listview;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,8 +15,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ListView listView;
     Button button;
     String[] Continents = {"America", "Europe", "Asia", "Africa"};
-
-    Intent si = new Intent(this,MainActivity2.class);
+    String choice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +30,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,Continents);
         listView.setAdapter(adp);
-
-
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Toast toast = Toast.makeText(this,""+Continents[i],Toast.LENGTH_SHORT);
+        choice = Continents[i];
         toast.show();
-        //si.putExtra("n",Continents[i]);
     }
 
     public void next(View view) {
-        //startActivity(si);
+        Intent si = new Intent(this,MainActivity2.class);
+        si.putExtra("n",choice);
+        startActivity(si);
     }
 }
