@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/**
+ * Created by Ofek Gani on 16/10/2019
+ */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     ListView listView;
     Button button;
     String[] Continents = {"America", "Europe", "Asia", "Africa"};
-    String choice;
+    int choice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +38,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Toast toast = Toast.makeText(this,""+Continents[i],Toast.LENGTH_SHORT);
-        choice = Continents[i];
+        choice = i;
         toast.show();
     }
 
     public void next(View view) {
-        Intent si = new Intent(this,MainActivity2.class);
-        si.putExtra("n",choice);
+        Intent si = new Intent(this, CountryListActivity.class);
+        si.putExtra("choice",choice);
         startActivity(si);
+
     }
 }
